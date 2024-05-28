@@ -1,4 +1,4 @@
-/*const http=require('http')*/
+
 const express=require('express')
 const app=express()
 const cors=require('cors')
@@ -29,12 +29,6 @@ let persons=
       }
     ]
   
-
-  /*const app=http.createServer((request,response)=>{
-    response.writeHead(200,{'Content-Type':'application/json'})
-    response.end(JSON.stringify(persons))
-  })*/
-
   app.get('/api/persons', (request, response) => {
     response.json(persons)
   })
@@ -74,10 +68,9 @@ let persons=
     response.json(person)
 
   })
-  //{ error: 'name must be unique' }
 
   const PORT=process.env.PORT || 3001
-  //app.listen(PORT)
+
   app.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`)
 })
