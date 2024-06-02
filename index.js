@@ -38,7 +38,7 @@ app.use(express.json())
     })
 
   })
-  app.post('/api/persons',(request,response,next)=>{
+  app.post('/api/persons',async (request,response,next)=>{
     const id=Math.floor(Math.random() * 100000)
     const body=request.body
     
@@ -46,6 +46,11 @@ app.use(express.json())
       return response.status(400).json({
         error:'must include name and number'
       })
+    }
+    else if(await Person.exists({name:body.name})){
+      return response.status(400).json({
+        error:'name must be unique'
+    })
     }
     else {
       const person=new Person({
